@@ -6,16 +6,27 @@ import ProductCard from "./partials/ProductCard";
 export default function Home() {
     const [products, setProducts] = useState([]);
     const [message, setMessage] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const productList = async () => {
-            const response = await apiRequest("/public-products", "GET", true);
-            setProducts(response.data.data);
+            try {
+                setLoading(true);
+                const response = await apiRequest("/public-products", "GET", true);
+                setProducts(response.data.data);
+            } catch (error) {
+                setMessage({
+                    type: "error",
+                    text: "Error loading products"
+                });
+            } finally {
+                setLoading(false);
+            }
         };
 
         productList();
     }, []);
-    console.log(products);
+
     return (
         <div>
             <FrontNavbar />
@@ -33,8 +44,14 @@ export default function Home() {
                         </div>
                     )}
 
-                    {products.length === 0 ? (
-                        <p>No products available</p>
+                    {loading ? (
+                        <div className="text-center py-10 text-gray-600 text-lg">
+                            Data loading, please wait...
+                        </div>
+                    ) : products.length === 0 ? (
+                        <div className="text-center py-10 text-gray-500 text-lg">
+                            No data found
+                        </div>
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                             {products.map((product) => (

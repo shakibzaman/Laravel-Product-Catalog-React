@@ -58,11 +58,13 @@ export default function SingleProduct() {
         <div>
             <FrontNavbar />
             <div>
-                {isFBExtensionEnabled ? (
+                {/* {isFBExtensionEnabled ? (
                     <p>✅ Chrome Extension is enabled</p>
                 ) : (
                     <p>❌ Chrome Extension is not enabled</p>
-                )}
+                )} */}
+
+                {/* Todo : We Can try Communicate with Chrome Extension from here  */}
             </div>
             <div className="min-h-screen bg-gray-100 py-10">
                 <div className="container mx-auto px-4">
@@ -99,9 +101,12 @@ export default function SingleProduct() {
                                 <button className="bg-gray-300 text-gray-800 px-6 py-3 rounded-lg shadow-lg hover:bg-gray-400 transition-all duration-300">
                                     Buy Now
                                 </button>
+                                 {/* Todo : We Can try Communicate with Chrome Extension from here  */}
                                 {isFBExtensionEnabled ? (
                                     <button className="bg-gray-300 text-gray-800 px-6 py-3 rounded-lg shadow-lg hover:bg-gray-400 transition-all duration-300">
-                                        Share Now
+                                        Share Now To facebook Market Place <small>
+                                            (TODO)
+                                        </small>
                                     </button>
                                 ) : (
                                     <p>❌ Chrome Extension is not enabled</p>
