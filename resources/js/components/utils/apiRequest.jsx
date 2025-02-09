@@ -4,7 +4,13 @@ export default async function apiRequest(
     body = null,
     isFormData = false
 ) {
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api"; // Get from env with fallback
+    const API_BASE_URL =
+        import.meta.env.VITE_API_BASE_URL || "http://localhost:7000/api";
+
+    // Add these console logs to verify the environment variable
+    console.log("API_BASE_URL:", API_BASE_URL);
+    console.log("All Vite Env Variables:", import.meta.env);
+
     const token = localStorage.getItem("token");
 
     const config = {
