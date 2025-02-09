@@ -10,10 +10,19 @@ export default defineConfig(({ command }) => {
             laravel({
                 input: ['resources/css/app.css', 'resources/js/index.jsx'],
                 refresh: true,
-                buildDirectory: 'build'
             }),
             react(),
         ],
+        build: {
+            manifest: true,
+            outDir: 'public/build',
+            rollupOptions: {
+                input: {
+                    app: resolve(__dirname, 'resources/js/index.jsx'),
+                    css: resolve(__dirname, 'resources/css/app.css')
+                }
+            }
+        },
         resolve: {
             alias: {
                 '@': '/resources/js',
@@ -41,19 +50,6 @@ export default defineConfig(({ command }) => {
                 usePolling: true,
                 interval: 300,
             },
-        };
-    }
-    // Production specific config
-    else {
-        config.build = {
-            manifest: true,
-            outDir: 'public/build',
-            rollupOptions: {
-                input: {
-                    main: resolve(__dirname, 'resources/js/index.jsx'),
-                    css: resolve(__dirname, 'resources/css/app.css')
-                }
-            }
         };
     }
 
