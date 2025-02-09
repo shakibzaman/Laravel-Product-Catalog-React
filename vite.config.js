@@ -1,5 +1,6 @@
 import react from '@vitejs/plugin-react';
 import laravel from 'laravel-vite-plugin';
+import { resolve } from 'path';
 import tailwindcss from 'tailwindcss';
 import { defineConfig } from 'vite';
 
@@ -22,6 +23,16 @@ export default defineConfig(({ command }) => {
         css: {
             postcss: {
                 plugins: [tailwindcss()]
+            }
+        },
+        build: {
+            manifest: true,
+            outDir: 'public/build',
+            rollupOptions: {
+                input: {
+                    app: resolve(__dirname, 'resources/js/index.jsx'),
+                    css: resolve(__dirname, 'resources/css/app.css')
+                }
             }
         }
     };
