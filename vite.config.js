@@ -24,16 +24,6 @@ export default defineConfig(({ command }) => {
             postcss: {
                 plugins: [tailwindcss()]
             }
-        },
-        build: {
-            manifest: true,
-            outDir: 'public/build',
-            rollupOptions: {
-                input: {
-                    app: resolve(__dirname, 'resources/js/index.jsx'),
-                    css: resolve(__dirname, 'resources/css/app.css')
-                }
-            }
         }
     };
 
@@ -56,12 +46,12 @@ export default defineConfig(({ command }) => {
     // Production specific config
     else {
         config.build = {
-            chunkSizeWarningLimit: 1600,
             manifest: true,
             outDir: 'public/build',
             rollupOptions: {
-                output: {
-                    manualChunks: undefined
+                input: {
+                    main: resolve(__dirname, 'resources/js/index.jsx'),
+                    css: resolve(__dirname, 'resources/css/app.css')
                 }
             }
         };
