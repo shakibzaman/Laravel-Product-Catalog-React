@@ -30,6 +30,10 @@ export default function List() {
 
         setLoading(false);
     };
+    const truncateText = (text, maxLength) => {
+        if (text.length <= maxLength) return text;
+        return text.slice(0, maxLength) + "...";
+    };
 
     useEffect(() => {
         const productList = async () => {
@@ -104,7 +108,10 @@ export default function List() {
                                             {product.name}
                                         </td>
                                         <td className="border px-4 py-2">
-                                            {product.description}
+                                            {truncateText(
+                                                product.description,
+                                                100
+                                            )}
                                         </td>
                                         <td className="border px-4 py-2">
                                             {product.price}
@@ -129,7 +136,9 @@ export default function List() {
                                                 </Link>
                                                 <button
                                                     onClick={() =>
-                                                        handleDeleteProduct(product.id)
+                                                        handleDeleteProduct(
+                                                            product.id
+                                                        )
                                                     }
                                                     className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300 text-sm font-medium"
                                                 >
