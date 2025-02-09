@@ -1,3 +1,5 @@
+import React from 'react';
+import Home from './components/Home';
 import { BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import { AuthProvider } from "./components/auth/AuthContext";
 import Navbar from "./components/partials/Navbar";

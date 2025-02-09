@@ -7,7 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const rootElement = document.getElementById("app");
 
     if (rootElement) {
-        ReactDOM.createRoot(rootElement).render(<App />);
+        ReactDOM.createRoot(rootElement).render(
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        );
     } else {
         console.error("Root element not found!");
     }
