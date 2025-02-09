@@ -7,8 +7,9 @@ export default defineConfig(({ command }) => {
     const config = {
         plugins: [
             laravel({
-                input: ['resources/js/index.jsx'],
+                input: ['resources/css/app.css', 'resources/js/index.jsx'],
                 refresh: true,
+                buildDirectory: 'build'
             }),
             react(),
         ],
@@ -45,7 +46,13 @@ export default defineConfig(({ command }) => {
     else {
         config.build = {
             chunkSizeWarningLimit: 1600,
+            manifest: true,
             outDir: 'public/build',
+            rollupOptions: {
+                output: {
+                    manualChunks: undefined
+                }
+            }
         };
     }
 
