@@ -143,21 +143,6 @@ export default function CreateProduct() {
                         />
                     </div>
 
-                    {/* Minimum Notification Stock */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Minimum Notification Stock
-                        </label>
-                        <input
-                            type="number"
-                            name="min_notification_stock"
-                            value={formData.min_notification_stock}
-                            onChange={handleChange}
-                            required
-                            className="mt-1 block w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
-                        />
-                    </div>
-
                     {/* Image Upload */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">
