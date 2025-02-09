@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\Api\AuthController;
 use App\Http\Controllers\Admin\Api\ProductController;
 use App\Http\Controllers\Public\Api\ProductController as ApiProductController;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Controllers\MediaController;
+use App\Http\Controllers\ImageController;
 
 // Middleware to handle unauthenticated requests
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -27,6 +29,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/public-products', [ApiProductController::class, 'index']);
 Route::get('/public-products/{id}', [ApiProductController::class, 'show']);
+Route::get('/get-product', [ApiProductController::class, 'getProduct']);
 
 // Testing Route (Optional)
 Route::middleware('auth:sanctum')->post('/user', function (Request $request) {
@@ -34,3 +37,8 @@ Route::middleware('auth:sanctum')->post('/user', function (Request $request) {
 });
 
 // Global Exception Handler for API Middleware
+
+Route::match(['GET', 'OPTIONS'], 'media/images/products/{path}', [MediaController::class, 'serveImage']);
+
+Route::match(['GET', 'OPTIONS'], 'serve-image/{path}', [ImageController::class, 'serve'])
+    ->where('path', '.*');  // This allows for nested paths

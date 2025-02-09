@@ -18,9 +18,10 @@ function Layout() {
     const location = useLocation();
 
     // Hide Navbar on specific pages
-    const hideNavbar = ["/", "/register", "/public/product"].includes(
-        location.pathname
-    );
+    const hideNavbar =
+        ["/", "/login", "/register", "/product-view"].includes(
+            location.pathname
+        ) || location.pathname.startsWith("/product-view/");
 
     return (
         <>

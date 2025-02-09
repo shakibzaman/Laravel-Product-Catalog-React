@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import FrontNavbar from "../partials/FrontNavbar";
 import apiRequest from "../utils/apiRequest";
 import ProductCard from "./partials/ProductCard";
 
@@ -18,9 +18,7 @@ export default function Home() {
     console.log(products);
     return (
         <div>
-            <li>
-                <Link to="/login">Login</Link>
-            </li>
+            <FrontNavbar />
             <div className="flex justify-center items-center min-h-screen">
                 <div className="container mx-auto p-4">
                     {message && (

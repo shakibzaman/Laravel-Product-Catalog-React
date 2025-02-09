@@ -11,7 +11,7 @@ export default function ProductCard({ product }) {
                 <div className="price-button-container">
                     <span className="price">${product.price}</span>
                     <Link
-                        to={`/view-product/${product.id}`}
+                        to={`/product-view/${product.id}`}
                         className="add-to-cart"
                     >
                         View

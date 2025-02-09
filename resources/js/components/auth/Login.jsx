@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext"; 
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 
 const API_BASE_URL = "http://localhost:8000/api"; // API Base URL
 
@@ -24,7 +24,7 @@ const apiRequest = async (endpoint, method = "GET", data = null) => {
 };
 
 export default function Login() {
-    const { login } = useAuth(); 
+    const { login } = useAuth();
     const navigate = useNavigate();
 
     // Check if user is already logged in based on token
@@ -76,6 +76,9 @@ export default function Login() {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
             <div className="bg-white p-6 rounded-2xl shadow-xl w-1/2 mx-auto">
+                <Link className="bg-green-500 text-white p-2" to={`/`}>
+                    Back to Main Site
+                </Link>
                 <h2 className="text-3xl font-bold mb-6 text-center text-gray-700">
                     Login
                 </h2>

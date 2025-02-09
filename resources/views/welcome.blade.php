@@ -13,6 +13,11 @@
 
 <body>
     <div id="app"></div>
+    <script>
+        window.APP_CONFIG = {
+            extensionId: "{{ env('REACT_APP_EXTENSION_ID', 'default_extension_id') }}"
+        };
+    </script>
 </body>
 
 </html>

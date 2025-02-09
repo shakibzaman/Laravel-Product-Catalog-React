@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        // Add CORS headers
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-Request-With');
+        header('Access-Control-Allow-Credentials: true');
+    }
+
     public function index()
     {
         try {
@@ -27,9 +36,16 @@ class ProductController extends Controller
     {
         try {
             $product = Product::findOrFail($id);
+            // The image URL will now be handled by the accessor
             return ApiResponse::success('Product retrieved successfully.', $product);
         } catch (Exception $e) {
             return ApiResponse::error('Failed to retrieve product.', $e->getMessage());
         }
+    }
+
+    public function getProduct()
+    {
+        logger('Api is calling');
+        return response()->json(Product::latest()->first());
     }
 }

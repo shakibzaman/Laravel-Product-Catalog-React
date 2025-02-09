@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem("token");
         setToken(null);
-        navigate("/"); // Redirect to login page
+        navigate("/login"); // Redirect to login page
     };
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
             !token &&
             !publicRoutePaths.some((path) => location.pathname.startsWith(path))
         ) {
-            navigate("/");
+            navigate("/login");
         }
     }, [token, location.pathname, navigate]);
 

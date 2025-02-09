@@ -14,8 +14,9 @@ class Product extends Model
 
     public function getImageAttribute($value)
     {
-        return $value
-            ? asset("storage/{$value}")
-            : asset("storage/images/products/default.png");
+        if (!$value) {
+            return url("/storage/images/products/default.png");
+        }
+        return url("/storage/" . $value);
     }
 }

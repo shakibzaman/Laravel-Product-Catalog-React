@@ -14,10 +14,10 @@ import Register from "./components/users/Register";
 
 // ✅ Define public routes
 const publicRoutesConfig = [
-    { path: "/public/product", element: <Homepage /> },
+    { path: "/", element: <Homepage /> },
     { path: "/product-view/:id", element: <SingleProduct /> },
     {
-        path: "/",
+        path: "/login",
         element: (
             <RedirectIfAuthenticated>
                 <Login />
