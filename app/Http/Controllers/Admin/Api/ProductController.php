@@ -37,7 +37,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        info('Request Create Data:', [$request->all()]);
         try {
             $request->validate([
                 'name' => 'required|string|max:255',
@@ -89,7 +88,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        info('Request Data:', [$request->all()]);
         try {
             $product = Product::findOrFail($id);
 
@@ -115,10 +113,6 @@ class ProductController extends Controller
             // Update product
             $product->update($validatedData);
 
-            // Clear cache
-            Cache::forget('products');
-            Cache::forget("product_{$id}");
-
             return ApiResponse::success('Product updated successfully.', $product);
         } catch (Exception $e) {
             return ApiResponse::error('Failed to update product.', $e->getMessage());
@@ -134,11 +128,7 @@ class ProductController extends Controller
             // Find and delete the product
             $product = Product::findOrFail($id);
             $product->delete();
-
-            // Clear the related cache
-            Cache::forget('products');
-            Cache::forget("product_{$id}");
-
+            
             // Return a success response
             return ApiResponse::success('Product deleted successfully.', null, 200);
         } catch (Exception $e) {

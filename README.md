@@ -1,57 +1,132 @@
-Project Name: Laravel Product Catalog API + React App
+# Laravel Product Catalog with React
 
-Description
-This project is a full-stack application that combines a Laravel 11 API with a React.js frontend, all running within a Docker environment. The API serves as a product catalog, and the React app provides an interactive user interface for managing and displaying products. The application also integrates Redis for caching, RabbitMQ for message queuing, and MySQL as the database.
+A modern web application built with Laravel 11 and React.js for managing and displaying products.
 
-Project Stack
-Docker: Containerized environment for easy setup and deployment.
-Laravel 11: Backend API for handling product data and business logic.
-React.js: Frontend application for displaying and interacting with product catalog data.
-Redis: In-memory data store for caching API responses.
-RabbitMQ: Message broker for managing background tasks.
-MySQL: Relational database for storing product data.
+## Features
 
-Setup Instructions
-Follow the steps below to set up the project locally or in any environment that supports Docker.
+-   Product listing
+-   Product details view
+-   Admin dashboard for product management
+-   Image upload functionality
 
-1. Clone the Repository
-   First, clone the project repository:
+## Requirements
 
-git clone https://github.com/shakibzaman/Docker-Product-Catalog.git
-cd Docker-Product-Catalog
+-   PHP 8.2+
+-   MySQL 5.7+
+-   Node.js 16+
+-   npm 8+
+-   Composer 2+
 
-2. Install Docker and Docker Compose
-   Ensure that you have Docker and Docker Compose installed on your system. You can download and install them from the following links:
+## Installation
 
-Docker Installation Guide
-Docker Compose Installation Guide
+### 1. Clone the Repository
 
-3. Build the Docker Containers
-   Navigate to the project folder, then build the Docker containers for both Laravel and React:
+```bash
+git clone https://github.com/shakibzaman/Laravel-Product-Catalog-React.git
+cd Laravel-Product-Catalog-React
+```
 
-docker-compose up -d --build
-This will build the required Docker images for both the backend API (Laravel) and the frontend (React).
+### 2. Backend Setup
 
-4. Set Up the Environment Variables
-   Copy the .env.example file and create your own .env file for configuration:
+```bash
+# Install PHP dependencies
+composer install
 
+# Create environment file
 cp .env.example .env
-Make sure to update the database, Redis, and RabbitMQ configurations in the .env file as needed.
 
-5. Migrate the Database
-   Once the containers are up and running, migrate the database for Laravel:
+# Generate application key
+php artisan key:generate
 
-docker-compose exec app php artisan migrate
-This will set up the necessary tables in the MySQL database.
+# Run migrations
+php artisan migrate
 
-6. Install Dependencies
-   For the Laravel API:
+# Create storage link for images
+php artisan storage:link
 
-docker-compose exec app composer install
-For the React app:
+# Start Laravel server
+php artisan serve
+```
 
-docker-compose exec react npm install 7. Run the Application
-After all dependencies are installed, you can run the application:
+### 3. Frontend Setup
 
-Laravel API should be accessible at: http://localhost:8000
-React frontend should be accessible at: http://localhost:3000
+```bash
+# Install Node dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+### 4. Configure Environment
+
+Update your `.env` file with necessary credentials:
+
+```env
+APP_NAME=ProductCatalog
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+
+VITE_API_BASE_URL=http://localhost:8000/api
+```
+
+## Development Servers
+
+-   Backend API: http://localhost:8000
+-   Frontend: http://localhost:5173
+
+## API Endpoints
+
+```bash
+# Public endpoints
+GET /api/public-products     # Get all products
+GET /api/public-products/{id} # Get single product
+
+# Protected endpoints (requires authentication)
+POST   /api/products        # Create product
+GET    /api/products        # List products
+GET    /api/products/{id}   # Get product
+PUT    /api/products/{id}   # Update product
+DELETE /api/products/{id}   # Delete product
+```
+
+## Production Deployment
+
+1. Update `.env` for production:
+
+```env
+APP_ENV=production
+APP_DEBUG=false
+VITE_API_BASE_URL=https://your-domain.com/api
+```
+
+2. Build frontend assets:
+
+```bash
+npm run build
+```
+
+3. Configure your web server to point to the `public` directory
+
+## Common Issues & Solutions
+
+### API Connection Issues
+
+-   Ensure VITE_API_BASE_URL in `.env` matches your API URL
+-   Check CORS configuration in Laravel
+-   Verify API server is running
+
+### Image Upload Problems
+
+-   Check storage permissions: `php artisan storage:link`
+-   Verify upload directory is writable
+
+## Support
+
+For issues and feature requests, please create an issue in the GitHub repository or DM to zaman.shakib@gmail.com via Email.

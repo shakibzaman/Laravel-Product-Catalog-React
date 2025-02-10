@@ -5,7 +5,6 @@ import { useAuth } from "./AuthContext";
 export default function RedirectIfAuthenticated({ children }) {
     const { user } = useAuth(); // Get auth state
     const navigate = useNavigate();
-    console.log("User:", user); // Debugging
     useEffect(() => {
         if (user) {
             navigate("/home", { replace: true }); // Redirect if user is logged in

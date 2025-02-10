@@ -12,7 +12,7 @@ export default function EditProduct() {
         description: "",
         price: "",
         stock_quantity: "",
-        image: null, // New field for image
+        image: null,
     });
 
     // Handle input changes for text and number fields
@@ -23,7 +23,7 @@ export default function EditProduct() {
     // Handle file input change
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        console.log("Selected file:", file); // Debugging
+        console.log("Selected file:", file);
         setFormData({ ...formData, image: file });
     };
 
@@ -35,7 +35,6 @@ export default function EditProduct() {
                 setMessage(null);
 
                 const response = await apiRequest("/products/" + id, "GET");
-                console.log("Fetched product data:", response); // Debugging API response
 
                 // Ensure the response data is correctly structured
                 if (response.data && response.data.data) {
@@ -59,9 +58,6 @@ export default function EditProduct() {
         setMessage(null);
 
         try {
-            // Log the formData state to ensure it's populated correctly
-            console.log("formData state:", formData);
-
             const formDataToSend = new FormData();
 
             // Append all fields to FormData

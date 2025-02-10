@@ -1,5 +1,4 @@
-import React from 'react';
-import Home from './components/Home';
+import React from "react";
 import { BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import { AuthProvider } from "./components/auth/AuthContext";
 import Navbar from "./components/partials/Navbar";
@@ -21,9 +20,8 @@ function Layout() {
 
     // Hide Navbar on specific pages
     const hideNavbar =
-        ["/", "/login", "/register", "/product-view"].includes(
-            location.pathname
-        ) || location.pathname.startsWith("/product-view/");
+        ["/", "/login", "/product-view"].includes(location.pathname) ||
+        location.pathname.startsWith("/product-view/");
 
     return (
         <>

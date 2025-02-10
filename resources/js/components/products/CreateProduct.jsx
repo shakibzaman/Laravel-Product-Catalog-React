@@ -11,7 +11,7 @@ export default function CreateProduct() {
         description: "",
         price: "",
         stock_quantity: "",
-        image: null, // New field for image
+        image: null, 
     });
 
     const handleChange = (e) => {
