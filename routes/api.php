@@ -39,7 +39,7 @@ Route::middleware('auth:sanctum')->post('/user', function (Request $request) {
 
 // Global Exception Handler for API Middleware
 
-// Route::match(['GET', 'OPTIONS'], 'media/images/products/{path}', [MediaController::class, 'serveImage']);
+Route::match(['GET', 'OPTIONS'], 'media/images/products/{path}', [MediaController::class, 'serveImage']);
 
-// Route::match(['GET', 'OPTIONS'], 'serve-image/{path}', [ImageController::class, 'serve'])
-//     ->where('path', '.*');  // This allows for nested paths
+Route::match(['GET', 'OPTIONS'], 'serve-image/{path}', [ImageController::class, 'serve'])
+    ->where('path', '.*');  // This allows for nested paths
