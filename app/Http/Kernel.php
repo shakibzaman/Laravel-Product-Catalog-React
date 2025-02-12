@@ -16,6 +16,7 @@ class Kernel extends HttpKernel
     protected $middleware = [
         // ... existing code ...
         \Fruitcake\Cors\HandleCors::class,
+        \App\Http\Middleware\Cors::class,
     ];
 
     /**
